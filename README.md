@@ -1,6 +1,21 @@
 # github-reused-usernames
 Detect if a GitHub username was deleted and then re-registered. There is a high chance of false negatives but extremely low or no chance of false positives.
 
+## How to use
+
+### Chrome Extension
+
+Coming soon.
+
+### Bash
+
+Run this in your terminal, replacing "username" with the username that you want to check.
+
+```bash
+wget https://github.com/alexyorke/github-reused-usernames/raw/main/reused-usernames.json;
+(grep -q -m 1 "$(echo -n "username" | tr '[:upper:]' '[:lower:]' | sha256sum - | cut -f 1 | cut -c -16)" reused-usernames.json) && echo "Username found" || echo "Username not found";
+```
+
 ## Where does the data come from?
 
 The data comes from gharchive.org. I went through all 1.1TB or so from 2011 to the end of 2020, collected all usernames and user ids, and then found all usernames that were associated to more than one user id, case-insensitively. To help with privacy, each username is SHA256 hashed, lowercased, then truncated to 80 bits. The hash is truncated to reduce the download size.
