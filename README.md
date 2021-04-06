@@ -28,3 +28,7 @@ Also, if a user didn't do _anything_ on GitHub, then they won't be included in t
 ## Why would I want to use this?
 
 If a username has been re-registered on GitHub, then the new user (under the old username) could create a new repository with the same name as one of the previous owners repos. This would normally be confusing, as the new user may have a different repo than the older user.
+
+## Why is it a JSON string?
+
+I'm planning to use it as a Chrome extension and so want to be able to access each element in O(1) time (i.e. a dictionary), and loading a JSON string is faster than loading it as an object.
